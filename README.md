@@ -1,3 +1,7 @@
+*Important*: this expects to be be checked out in ~/.config/i3. You may need to adjust i3 settings to make it use this config.
+
+*Also important*: before running, you need to create a local configuration file and link to it with ~/.config/i3/local_config. Then run ~/.config/i3/utils/generate_config.sh
+
 My primary customizations:
 
 $mod+d opens rofi in both launch and window switch modes
@@ -20,4 +24,7 @@ Things which need to be installed from repos:
 rofi eog scrot pulseaudio-utils fonts-font-awesome xbacklight i3blocks gnome-settings-daemon nm-applet blueman-applet pasystray gnome-sound-applet gnome-screensaver gnome-keyring-daemon keynav mogrify i3lock
 
 You may need to install others based on contents of scripts in ~/.config/i3/utils directory
+
+You'll need to tweak various machine-specific things, like what you want to show up in status bar (~/.config/i3/i3blocks/i3blocks.conf). I'm working on making this function similarly to the main i3 config generation, but it's not there yet.
+
 
