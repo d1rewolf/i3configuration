@@ -1,0 +1,61 @@
+font pango:monospace 8 
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	tray_output primary
+    font pango:monospace 10
+    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+#	position top
+    colors {
+	    background #3c3b37
+		statusline #dcdccc
+
+    focused_workspace #93b3a3 #3c3b37 #93b3a3
+    active_workspace #ffcfaf #3c3b37 #ffcfaf
+    inactive_workspace #636363 #3c3b37 #dcdccc
+    urgent_workspace #dca3a3 #3c3b37 #dca3a3
+  }
+}
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/utils/volume.sh up
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/utils/volume.sh down
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/utils/volume.sh mute
+
+# control volume
+bindsym $mod+Prior exec pactl set-sink-volume 1 +5%
+bindsym $mod+Next exec pactl set-sink-volume 1 -5%
+bindsym $mod+End exec pactl set-sink-mute 1 toggle
+
+# wallpaper
+exec --no-startup-id feh --bg-fill ~/Pictures/beach.jpg
+
+# from work...merge in .Xresources for some reason. Work's Xresources included
+# in comment between >>>>
+#>>>
+#Xft.dpi: 180
+#Xft.autohint: 0
+#Xft.lcdfilter:  lcddefault
+#Xft.hintstyle:  hintfull
+#Xft.hinting: 1
+#Xft.antialias: 1
+#Xft.rgba: rgb
+#>>>
+#exec xrdb -merge $HOME/.Xresources
+
+bindsym $mod+Ctrl+l exec $HOME/.config/i3/utils/lock.sh
+exec --no-startup-id xautolock -time 5 -locker $HOME/.config/i3/utils/lock.sh &
+
+# reference
+bindsym $mod+Ctrl+Shift+i exec eog $HOME/.config/i3/utils/i3reference.jpg
+
+exec_always xrandr --output HDMI-1-2 --off \
+	   --output HDMI-1-1 --off \
+       --output DP-2-1 --mode 1920x1080 --pos 3840x0 --rotate normal \
+	   --output eDP-1-1 --off \
+	   --output DP-1-3 --off \
+	   --output DP-1-2 --mode 1920x1080 --pos 0x0 --rotate normal \
+	   --output DP-1-1 --off \
+	   --output DP-2-2 --primary --mode 1920x1080 --pos 1920x0 --rotate normal \
+	   --output DP-2-3 --off 
